@@ -32,4 +32,12 @@
 
     <color name="joinBtnActive">#ffd600</color>
     <color name="joinBtnNonActive">#919191</color>
+    <string name="title_activity_my_page">MyPageActivity</string>
+    <string name="title_activity_map_actvity">MapActvity</string>
+    <string name="title_activity_google_map">GoogleMap</string>
+    <string name="title_activity_mypage2">mypage2</string>
+    <string name="title_activity_my_page">MyPageActivity</string>
+    <string name="title_activity_map_actvity">MapActvity</string>
+    <string name="title_activity_google_map">GoogleMap</string>
+    <string name="title_activity_mypage2">mypage2</string>
 </resources>
