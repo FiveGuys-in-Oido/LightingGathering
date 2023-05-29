@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+        <item
+            android:id="@+id/tab_home"
+            android:icon="@drawable/home_gray"
+            android:title="home" />
+
+        <item
+            android:id = "@+id/tab_like"
+            android:icon="@drawable/heart_gray"
+            android:title = "like"
+            />
+        <item
+            android:id = "@+id/tab_search"
+            android:icon="@drawable/search_gray"
+            android:title = "search"
+            />
+        <item
+            android:id = "@+id/tab_user"
+            android:icon="@drawable/user_gray"
+            android:title = "user"
+            />
+
+</menu>
