@@ -48,39 +48,51 @@
             android:gravity="center">
 
             <Button
-                android:id="@+id/button3"
-                android:layout_width="69dp"
+                android:id="@+id/categoryBtn1"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:text="@string/cartegory1" />
+                android:layout_weight="1"
+                android:text="운동" />
 
             <Button
-                android:id="@+id/button5"
-                android:layout_width="69dp"
+                android:id="@+id/categoryBtn2"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:text="@string/category2" />
+                android:layout_weight="1"
+                android:text="공부" />
 
             <Button
-                android:id="@+id/button6"
-                android:layout_width="69dp"
+                android:id="@+id/categoryBtn3"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:text="@string/category3" />
+                android:layout_weight="1"
+                android:text="술" />
 
             <Button
-                android:id="@+id/button7"
-                android:layout_width="69dp"
+                android:id="@+id/categoryBtn4"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:text="@string/category4" />
+                android:layout_weight="1"
+                android:text="게임" />
 
             <Button
-                android:id="@+id/button8"
-                android:layout_width="69dp"
+                android:id="@+id/categoryBtn5"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:text="@string/category5" />
+                android:layout_weight="1"
+                android:text="택시" />
+
+            <Button
+                android:id="@+id/categoryBtn6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="배달" />
 
         </TableRow>
 
