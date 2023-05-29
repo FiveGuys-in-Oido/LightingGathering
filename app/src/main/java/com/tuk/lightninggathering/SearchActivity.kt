@@ -11,7 +11,7 @@ class SearchActivity : AppCompatActivity() {
     private lateinit var postList: MutableList<Post>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.search)
+        setContentView(R.layout.fragment_search)
 
         // RecyclerView 초기화
         recyclerView = findViewById(R.id.searchRecyclerView)

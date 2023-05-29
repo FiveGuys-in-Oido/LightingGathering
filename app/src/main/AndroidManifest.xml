@@ -30,8 +30,8 @@
             android:name=".MainActivity"
             android:exported="false"/>
         <activity
-                android:name=".NaviActivity"
-                android:exported="true">
+            android:name=".NaviActivity2"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
