@@ -1,5 +1,13 @@
 <resources>
     <string name="app_name">Lightning Gathering</string>
+    <string name="meeting">MEETING</string>
+    <string name="todo">TODO</string>
+    <string name="title">TITLE</string>
+    <string name="people_4_8">people 4 / 8</string>
+    <string name="details">Details</string>
+    <string name="member">Member</string>
+    <string name="reviews">Reviews</string>
+    <string name="join">JOIN</string>
     <string name="searchimage">searchBar</string>
     <string name="searchBar">검색바</string>
     <string name="name">Name</string>

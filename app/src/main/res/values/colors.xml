@@ -8,5 +8,23 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="gold">#FFd600</color>
+    <color name="colorPrimary">#ffd600</color>
+    <color name="textColor">#444444</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#ffd600</color>
+
     <color name="colorAccentText">#4d4d4d</color>
+    <color name="colorNormalText">#8b8b8b</color>
+    <color name="colorLightBack">#d8d8d8</color>
+    <color name="colorBack">#e3e3e3</color>
+
+    <!--yellow filter-->
+    <color name="yellow_color_filter">#30F8D43F</color>
+
+    <!--no filter-->
+    <color name="no_color_filter">#00ffffff</color>
+
+    <!--black filter-->
+    <color name="black_color_filter">#80000000</color>
+
 </resources>

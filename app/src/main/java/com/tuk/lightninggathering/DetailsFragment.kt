@@ -1,19 +1,12 @@
 package com.tuk.lightninggathering
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 
 class DetailsFragment : Fragment() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            // Handle arguments if needed
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,9 +16,17 @@ class DetailsFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_details, container, false)
     }
 
-    companion object {
-        @JvmStatic
-        fun newInstance() =
-            DetailsFragment()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // 데이터를 받아옵니다.
+        val memo = arguments?.getString("memo")
+        val date = arguments?.getString("date")
+        val placeName = arguments?.getString("placeName")
+        val placeAddress = arguments?.getString("placeAddress")
+        val latitude = arguments?.getDouble("latitude")
+        val longitude = arguments?.getDouble("longitude")
+
+        // 데이터를 화면에 표시하는 로직을 여기에 작성하세요.
     }
 }
