@@ -285,7 +285,7 @@
                     android:layout_marginRight="10dp"
                     android:background="@drawable/btn_corner"
                     android:onClick="onClick"
-                    android:text="술"
+                    android:text="외식"
                     android:textSize="13sp" />
 
             </LinearLayout>
