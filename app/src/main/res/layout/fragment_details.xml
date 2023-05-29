@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetailsFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/ib2"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="15dp"
+            android:background="@null"
+            android:scaleType="fitXY"
+            android:src="@drawable/information" />
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/ib2"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@id/ib2"
+            android:text="Date" />
+
+        <TextView
+            android:id="@+id/showDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@id/date"
+            android:layout_below="@id/date"
+            android:layout_marginTop="10dp"
+            android:text="2018년 6월 2일 13시 40분" />
+
+        <ImageView
+            android:id="@+id/ib3"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_below="@id/showDate"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="15dp"
+            android:background="@null"
+            android:scaleType="fitXY"
+            android:src="@drawable/information" />
+
+        <TextView
+            android:id="@+id/location"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/ib3"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@id/ib3"
+            android:text="Place" />
+
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/map"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_below="@id/location"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="15dp" />
+
+        <ImageView
+            android:id="@+id/ib5"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_below="@id/map"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="15dp"
+            android:background="@null"
+            android:scaleType="fitXY"
+            android:src="@drawable/information" />
+
+        <TextView
+            android:id="@+id/memo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/ib5"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@id/ib5"
+            android:text="Memo" />
+
+        <TextView
+            android:id="@+id/showMemo"
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:layout_below="@id/memo"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/border"
+            android:padding="10dp" />
+
+        <ImageView
+            android:id="@+id/ib4"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="25dp"
+            android:layout_below="@id/showMemo"
+            android:background="@null"
+            android:scaleType="fitXY"
+            android:src="@drawable/information" />
+
+        <TextView
+            android:id="@+id/Category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/ib4"
+            android:layout_toRightOf="@id/ib4"
+            android:layout_marginLeft="15dp"
+            android:text="Category" />
+
+    </RelativeLayout>
+
+</ScrollView>
