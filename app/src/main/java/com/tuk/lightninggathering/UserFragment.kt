@@ -26,10 +26,20 @@ class UserFragment : Fragment() {
             binding.editUpdateProfileNickname.isEnabled = true
         }
 
+        binding.btnUpdateProfileNickname.setOnClickListener{
+            val nickname = binding.editUpdateProfileNickname.text.toString()
+            // 유저 데이터 베이스에 저장.
+        }
+
         binding.btnChangeAddress.setOnClickListener {
             val intent = Intent(activity, MapActivity::class.java)
             startActivityForResult(intent, REQUEST_CODE_MAP)
+        }
 
+        binding.btnGetMyitem.setOnClickListener{
+            val intent = Intent(activity, ItemPost::class.java)
+            intent.putExtra("userId", 0) // 유저의 아이디를 입력
+            startActivity(intent)
         }
 
         return view
