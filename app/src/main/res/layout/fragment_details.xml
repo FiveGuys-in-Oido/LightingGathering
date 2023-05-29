@@ -26,7 +26,8 @@
             android:layout_alignBottom="@+id/ib2"
             android:layout_marginLeft="15dp"
             android:layout_toRightOf="@+id/ib2"
-            android:text="Date" />
+            android:text="일시"
+            android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/showDate"
@@ -35,7 +36,7 @@
             android:layout_alignStart="@+id/date"
             android:layout_below="@+id/date"
             android:layout_marginTop="10dp"
-            android:text="2018년 6월 2일 13시 40분" />
+            android:text="날짜" />
 
         <ImageView
             android:id="@+id/ib3"
@@ -49,13 +50,23 @@
             android:src="@drawable/information" />
 
         <TextView
-            android:id="@+id/location"
+            android:id="@+id/locationTitle"
             android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/ib3"
             android:layout_marginLeft="15dp"
             android:layout_toRightOf="@+id/ib3"
-            android:text="Place" />
+            android:text="장소"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/locationTitle"
+            android:layout_below="@+id/locationTitle"
+            android:layout_marginTop="10dp"
+            android:text="예시 주소" />
 
         <com.google.android.gms.maps.MapView
             android:id="@+id/map"
@@ -85,7 +96,8 @@
             android:layout_alignBottom="@+id/ib5"
             android:layout_marginLeft="15dp"
             android:layout_toRightOf="@+id/ib5"
-            android:text="Memo" />
+            android:text="설명"
+            android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/showMemo"
@@ -111,13 +123,24 @@
             android:src="@drawable/information" />
 
         <TextView
-            android:id="@+id/Category"
+            android:id="@+id/CategoryTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/ib4"
             android:layout_toRightOf="@+id/ib4"
             android:layout_marginLeft="15dp"
-            android:text="Category" />
+            android:text="카테고리"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/Category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/CategoryTitle"
+            android:layout_below="@+id/CategoryTitle"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:text="예시 카테고리" />
 
     </RelativeLayout>
 
