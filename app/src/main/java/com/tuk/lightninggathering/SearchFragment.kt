@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -17,24 +19,34 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class SearchFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var postAdapter: PostAdapter
+    private lateinit var postList: MutableList<Post>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_search, container, false)
+        val view = inflater.inflate(R.layout.fragment_search, container, false)
+
+        // RecyclerView 초기화
+        recyclerView = view.findViewById(R.id.searchRecyclerView)
+        recyclerView.setHasFixedSize(true)
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        // 게시물 데이터 생성
+        postList = ArrayList()
+        postList.add(Post("게시물 제목 1", "2023-05-30", "장소 1", "참여인원/현재인원 1"))
+        postList.add(Post("게시물 제목 2", "2023-05-31", "장소 2", "참여인원/현재인원 2"))
+        postList.add(Post("게시물 제목 3", "2023-06-01", "장소 3", "참여인원/현재인원 3"))
+        postList.add(Post("게시물 제목 4", "2023-06-02", "장소 4", "참여인원/현재인원 4"))
+
+        // 어댑터 설정
+        postAdapter = PostAdapter(postList, requireContext())
+        recyclerView.adapter = postAdapter
+
+        return view
     }
 
     companion object {
@@ -46,7 +58,6 @@ class SearchFragment : Fragment() {
          * @param param2 Parameter 2.
          * @return A new instance of fragment SearchFragment.
          */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
             SearchFragment().apply {
