@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-<!--    <data>-->
-<!--        <variable-->
-<!--            name="data"-->
-<!--            type="com.tuk.lightninggathering.MyPage" />-->
-<!--    </data>-->
+    <!--    <data>-->
+    <!--        <variable-->
+    <!--            name="data"-->
+    <!--            type="com.tuk.lightninggathering.MyPage" />-->
+    <!--    </data>-->
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -31,8 +31,8 @@
             app:layout_constraintTop_toBottomOf="@+id/image_mypage_profile"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-             />
-<!--        android:text="@{data.nickname}"-->
+            />
+        <!--        android:text="@{data.nickname}"-->
 
         <TextView
             android:id="@+id/tv_mypage_nickname2"
@@ -60,7 +60,9 @@
             app:layout_constraintEnd_toStartOf="@+id/btn_update_profile_nickname"
             app:layout_constraintTop_toBottomOf="@+id/btn_edit_nickname"
             android:layout_marginStart="25dp"
-            android:hint="NickName" />
+            android:hint="NickName"
+            android:enabled="false"/>
+
 
         <Button
             android:id="@+id/btn_update_profile_nickname"

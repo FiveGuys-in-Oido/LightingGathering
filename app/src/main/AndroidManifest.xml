@@ -53,12 +53,6 @@
             android:name=".GatheringRegisterActivity"
             android:exported="true" />
         <activity
-            android:name=".MyPageActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MapActivity"
-            android:exported="true" />
-        <activity
             android:name=".MainActivity"
             android:exported="false"/>
         <activity
