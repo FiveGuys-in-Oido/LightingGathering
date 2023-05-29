@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Lightning Gathering</string>
+    <string name="searchimage">searchBar</string>
+    <string name="searchBar">검색바</string>
+    <string name="name">Name</string>
+    <string name="category1">Button</string>
+    <string name="cartegory1">Button</string>
+    <string name="category2">Button</string>
+    <string name="category3">Button</string>
+    <string name="category4">Button</string>
+    <string name="category5">Button</string>
+    <string name="category6">Button</string>
 </resources>
