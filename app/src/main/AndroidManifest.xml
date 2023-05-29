@@ -11,6 +11,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LightningGathering"
         tools:targetApi="31">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCjn9WHJjvBZe03HS-hfG1pIOVhjchHBHk" />
+        <activity
+            android:name=".MyPage"
+            android:exported="false" />
         <activity
             android:name=".GatheringDetailActivity"
             android:exported="true" />
@@ -38,6 +44,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.theme.MapActvity"
+            android:exported="false"
+            android:label="@string/title_activity_map_actvity"
+            android:theme="@style/Theme.LightningGathering" />
     </application>
 
 </manifest>
