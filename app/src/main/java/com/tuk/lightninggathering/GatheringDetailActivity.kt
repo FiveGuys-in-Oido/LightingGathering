@@ -29,7 +29,7 @@ class GatheringDetailActivity : AppCompatActivity() {
                     }
 
                     // DetailsFragment를 생성하고 Bundle을 설정합니다.
-                    DetailsFragment().apply {
+                    DetailsInfoFragment().apply {
                         arguments = bundle
                     }
                 }
