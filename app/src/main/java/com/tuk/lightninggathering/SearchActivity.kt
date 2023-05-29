@@ -26,6 +26,6 @@ class SearchActivity : AppCompatActivity() {
 
         // 어댑터 설정
         postAdapter = PostAdapter(postList)
-        recyclerView.setAdapter(postAdapter)
+        recyclerView.adapter = postAdapter
     }
 }
