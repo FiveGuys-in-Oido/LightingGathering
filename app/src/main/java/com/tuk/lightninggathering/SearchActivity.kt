@@ -14,9 +14,9 @@ class SearchActivity : AppCompatActivity() {
         setContentView(R.layout.search)
 
         // RecyclerView 초기화
-        recyclerView = findViewById(R.id.recyclerView)
+        recyclerView = findViewById(R.id.searchRecyclerView)
         recyclerView.setHasFixedSize(true)
-        recyclerView.setLayoutManager(LinearLayoutManager(this))
+        recyclerView.layoutManager = LinearLayoutManager(this)
 
         // 게시물 데이터 생성
         postList = ArrayList()
