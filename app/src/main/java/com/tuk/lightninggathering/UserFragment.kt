@@ -22,6 +22,8 @@ class UserFragment : Fragment() {
         _binding = FragmentUserBinding.inflate(inflater, container, false)
         val view = binding.root
 
+        binding.tvMypageNickname.text = "userName"
+
         binding.btnEditNickname.setOnClickListener{
             binding.editUpdateProfileNickname.isEnabled = true
         }
