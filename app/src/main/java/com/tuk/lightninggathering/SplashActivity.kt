@@ -16,7 +16,7 @@ class SplashActivity : AppCompatActivity() {
 
         val animationView = findViewById<LottieAnimationView>(R.id.one_btn).apply {
             speed = 1f
-            setAnimation("111632-lightningneon.json") // replace this with your animation file
+            setAnimation("65362-lightning.json") // replace this with your animation file
             enableMergePathsForKitKatAndAbove(true)
             visibility = View.VISIBLE
             repeatCount = LottieDrawable.INFINITE
