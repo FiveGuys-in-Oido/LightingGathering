@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "718980654399",
+    "project_id": "lightinggatheringfirebase",
+    "storage_bucket": "lightinggatheringfirebase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:718980654399:android:2a5e244948d0d998e95f8a",
+        "android_client_info": {
+          "package_name": "com.tuk.lightninggathering"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzN5l0xSp4Yj0NB5c_Ad2krRhK0tuaQFQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

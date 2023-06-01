@@ -1,104 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".HomeFragment">
+    android:layout_height="match_parent">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/new_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="15dp"
-        android:clickable="true"
-        android:elevation="6dp"
-        android:src="@drawable/plus"
-        android:contentDescription="새로운 버튼" />
-
-    <ScrollView
-        android:id="@+id/scroll_view"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="none">
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            android:id="@+id/scroll_layout"
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="50dp"
+            android:background="#ffd600">
 
             <TextView
-                android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:text="HOT LIST"
-                android:textColor="#fa4b4b"
-                android:textSize="18sp" />
+                android:layout_gravity="center"
+                android:text="show meeting"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </androidx.appcompat.widget.Toolbar>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/home_main_recyclerview"
-                android:layout_width="match_parent"
-                android:layout_height="200dp">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/showRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp" />
 
-            </androidx.recyclerview.widget.RecyclerView>
+    </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/slider_dots"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical|center_horizontal"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-            </LinearLayout>
-
-            <TextView
-                android:layout_marginTop="30dp"
-                android:layout_marginLeft="20dp"
-                android:textSize="16dp"
-                android:textStyle="bold"
-                android:textColor="@color/colorAccentText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="#치맥"
-                android:id="@+id/home_text_id"/>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/home_recyclerView">
-            </androidx.recyclerview.widget.RecyclerView>
-
-            <TextView
-                android:layout_marginTop="30dp"
-                android:layout_marginLeft="20dp"
-                android:textSize="16dp"
-                android:textStyle="bold"
-                android:textColor="@color/colorAccentText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="#운동"
-                android:id="@+id/home_text_id2"/>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="60dp"
-                android:id="@+id/home_recyclerView2">
-            </androidx.recyclerview.widget.RecyclerView>
-
-        </LinearLayout>
-
-
-    </ScrollView>
-
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -53,9 +53,6 @@
             android:name=".ItemPost"
             android:exported="false" />
         <activity
-            android:name=".MeetingActivity"
-            android:exported="true" />
-        <activity
             android:name=".SearchActivity"
             android:exported="true" />
         <activity
@@ -69,11 +66,14 @@
             android:exported="true" />
         <activity
             android:name=".MainActivity"
-            android:exported="false"/>
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         <activity
                 android:name=".NaviActivity"
                 android:exported="true">
-
         </activity>
 
     </application>
