@@ -30,10 +30,10 @@ class SplashActivity : AppCompatActivity() {
         }
 
         Handler().postDelayed({
-            val intent = Intent(this, NaviActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
-        }, 6000)
+        }, 500)
     }
 
     override fun onPause() {
