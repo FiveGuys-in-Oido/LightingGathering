@@ -8,6 +8,14 @@ android {
     namespace 'com.tuk.lightninggathering'
     compileSdk 33
 
+    dataBinding {
+        enabled = true
+    }
+
+    viewBinding {
+        enabled = true
+    }
+
     defaultConfig {
         applicationId "com.tuk.lightninggathering"
         minSdk 23
@@ -56,8 +64,13 @@ dependencies {
     implementation 'com.google.android.gms:play-services-maps:18.0.2'
     implementation 'com.google.android.gms:play-services-location:20.0.0'
     implementation 'com.google.android.libraries.places:places:2.5.0'
+
     // firebase
     implementation platform('com.google.firebase:firebase-bom:32.0.0')
     implementation 'com.google.firebase:firebase-analytics-ktx'
+
+    // Lottie 라이브러리
+    def lottieVersion = "5.0.2"
+    implementation "com.airbnb.android:lottie:$lottieVersion"
 
 }
