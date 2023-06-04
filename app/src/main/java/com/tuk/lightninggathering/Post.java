@@ -27,6 +27,10 @@ public class Post {
         this.memberKeys = memberKeys;
     }
 
+    public Post() {
+
+    }
+
     public String getTitle() {
         return title;
     }
