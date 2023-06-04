@@ -41,4 +41,8 @@
     <string name="btn_login">로그인</string>
     <string name="btn_registration">회원가입</string>
     <string name="firebase_web_client_id">718980654399-lqm9uck6rtq6okqee7oui8rmaj41kpkp.apps.googleusercontent.com</string>
+    <string name="dateTitle">일시</string>
+    <string name="placeTitle">장소</string>
+    <string name="descriptionTitle">설명</string>
+    <string name="categoryTitle">카테고리</string>
 </resources>
