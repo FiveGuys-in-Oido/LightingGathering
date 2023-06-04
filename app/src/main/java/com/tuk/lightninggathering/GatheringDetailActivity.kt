@@ -1,59 +1,91 @@
 package com.tuk.lightninggathering
 
 import android.os.Bundle
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.google.android.material.tabs.TabItem
+import com.google.firebase.FirebaseApp
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 class GatheringDetailActivity : AppCompatActivity() {
 
     // ViewPager를 위한 Adapter
     inner class SectionsPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
-        override fun getItem(position: Int): Fragment {
-            return when (position) {
-                0 -> {
-                    // DetailsFragment에 전달할 데이터를 Bundle에 넣습니다.
-                    val bundle = Bundle().apply {
-                        // 아래의 "memo", "date" 등은 예시이므로 실제 앱에 필요한 데이터로 바꾸어주세요.
-                        putString("memo", "example memo")
-                        putString("date", "example date")
-                        putString("placeName", "example placeName")
-                        putString("placeAddress", "example placeAddress")
-                        putDouble("latitude", 0.0)
-                        putDouble("longitude", 0.0)
-                    }
+        private val fragmentList = ArrayList<Fragment>()
 
-                    // DetailsFragment를 생성하고 Bundle을 설정합니다.
-                    DetailsInfoFragment().apply {
-                        arguments = bundle
-                    }
-                }
-                1 -> MemberFragment() // MemberFragment를 반환합니다.
-                2 -> ReviewFragment() // ReviewFragment를 반환합니다.
-                else -> throw IllegalStateException("Unexpected position: $position")
-            }
+        fun addFragment(fragment: Fragment) {
+            fragmentList.add(fragment)
         }
 
-        override fun getCount() = 3
+        override fun getItem(position: Int): Fragment {
+            return fragmentList[position]
+        }
+
+        override fun getCount() = fragmentList.size
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_gathering_detail)
 
-        val sectionsPagerAdapter = SectionsPagerAdapter(supportFragmentManager)
-        val viewPager: ViewPager = findViewById(R.id.container)
-        viewPager.adapter = sectionsPagerAdapter
+        val meetingKey = intent.getStringExtra("meetingKey")
+//        val meetingKey = "-NX5hZ_4p0E2oWYV7atq"
 
-        val tabs: TabLayout = findViewById(R.id.tabs)
-        tabs.setupWithViewPager(viewPager)
-        tabs.getTabAt(0)?.text = getString(R.string.details)
-        tabs.getTabAt(1)?.text = getString(R.string.member)
-        tabs.getTabAt(2)?.text = getString(R.string.reviews)
+        FirebaseApp.initializeApp(this)
+        val db = FirebaseDatabase.getInstance()
+        val meetingsRef = db.getReference("meetings")
+        val query = meetingsRef.orderByKey().equalTo(meetingKey)
+
+        val sectionsPagerAdapter = SectionsPagerAdapter(supportFragmentManager)
+
+        query.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                for (meetingSnapshot in dataSnapshot.children) {
+                    val meeting = meetingSnapshot.getValue(Post::class.java)
+
+                    val showTitle: TextView = findViewById(R.id.showTitle)
+                    val showPeoplenum: TextView = findViewById(R.id.showPeoplenum)
+                    showTitle.text = meeting?.title
+                    showPeoplenum.text = "인원 수: ${meeting?.memberKeys?.size} / ${meeting?.maxMemberCount}"
+
+                    // DetailsFragment에 전달할 데이터를 Bundle에 넣습니다.
+                    val bundle = Bundle().apply {
+                        putString("date", meeting?.date)
+                        putString("location",  meeting?.location)
+                        putDouble("latitude", meeting?.latitude!!)
+                        putDouble("longitude", meeting?.longitude!!)
+                        putString("description",  meeting?.description)
+                        putString("category",  meeting?.category)
+                    }
+
+                    val detailsInfoFragment = DetailsInfoFragment()
+                    detailsInfoFragment.arguments = bundle
+
+                    // ViewPager에 DetailsInfoFragment 추가
+                    sectionsPagerAdapter.addFragment(detailsInfoFragment)
+                }
+
+                // ViewPager 설정
+                sectionsPagerAdapter.addFragment(MemberFragment())
+                val viewPager: ViewPager = findViewById(R.id.container)
+                viewPager.adapter = sectionsPagerAdapter
+                val tabs: TabLayout = findViewById(R.id.tabs)
+                tabs.setupWithViewPager(viewPager)
+                tabs.getTabAt(0)?.text = getString(R.string.details)
+                tabs.getTabAt(1)?.text = getString(R.string.member)
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Handle the error
+            }
+        })
     }
 }
