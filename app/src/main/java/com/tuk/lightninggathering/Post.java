@@ -27,6 +27,14 @@ public class Post {
         this.memberKeys = memberKeys;
     }
 
+    public Post(String title, String date, String location, List<String> memberKeys, Integer maxMemberCount){
+        this.title = title;
+        this.date = date;
+        this.location = location;
+        this.memberKeys = memberKeys;
+        this.maxMemberCount = maxMemberCount;
+    }
+
     public String getTitle() {
         return title;
     }

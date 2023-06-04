@@ -1,5 +1,6 @@
 package com.tuk.lightninggathering;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -33,6 +34,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         return new ViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Post post = postList.get(position);
@@ -40,7 +42,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         holder.titleTextView.setText(post.getTitle());
         holder.dateTextView.setText(post.getDate());
         holder.locationTextView.setText(post.getLocation());
-        //holder.participantsTextView.setText(post.getParticipants());
+        holder.participantsTextView.setText(post.getMemberKeys().size() + "/" + post.getMaxMemberCount());
     }
 
     @Override
