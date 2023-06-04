@@ -4,6 +4,8 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.location.Address
+import android.location.Geocoder
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -27,6 +29,7 @@ import com.google.android.libraries.places.widget.listener.PlaceSelectionListene
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.tuk.lightninggathering.BuildConfig.MAPS_API_KEY
 import com.tuk.lightninggathering.databinding.ActivityMapBinding
+import java.util.Locale
 
 class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -96,8 +99,13 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         changeLocationButton.setOnClickListener {
             // 마커의 위치 정보를 가져와서 이전 컴포넌트에 전달
             val markerLocation = googleMap.cameraPosition.target
+            val geocoder = Geocoder(this, Locale.getDefault()) // Geocoder 인스턴스 초기화
+            val addresses: List<Address>? = geocoder.getFromLocation(markerLocation.latitude, markerLocation.longitude, 1)
+            val address = addresses?.get(0)?.getAddressLine(0)
+            Log.i("address", "$address")
             val intent = Intent()
             intent.putExtra("marker_location", markerLocation)
+            intent.putExtra("marker_address", address)
             setResult(Activity.RESULT_OK, intent)
             finish()
         }
