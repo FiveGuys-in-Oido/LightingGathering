@@ -69,6 +69,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_weight="1"
                 android:background="@drawable/btn_corner"
+                android:onClick="onClick"
                 android:text="운동" />
 
             <Button
@@ -78,6 +79,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_weight="1"
                 android:background="@drawable/btn_corner"
+                android:onClick="onClick"
                 android:text="공부" />
 
             <Button
@@ -87,6 +89,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_weight="1"
                 android:background="@drawable/btn_corner"
+                android:onClick="onClick"
                 android:text="외식" />
 
             <Button
@@ -96,6 +99,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_weight="1"
                 android:background="@drawable/btn_corner"
+                android:onClick="onClick"
                 android:text="게임" />
 
             <Button
@@ -105,6 +109,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_weight="1"
                 android:background="@drawable/btn_corner"
+                android:onClick="onClick"
                 android:text="택시" />
 
             <Button
@@ -113,6 +118,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/btn_corner"
+                android:onClick="onClick"
                 android:text="배달" />
 
         </TableRow>
