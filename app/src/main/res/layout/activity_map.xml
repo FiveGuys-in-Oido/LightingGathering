@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         app:cameraZoom="15"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp" />
+        tools:layout_editor_absoluteY="-46dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_current_location"
@@ -39,23 +39,11 @@
         android:orientation="horizontal"
         app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
-            android:id="@+id/edit_search_map"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:hint="주소 검색"
-            android:imeOptions="actionSearch"
-            android:inputType="text"
-            android:textColor="@color/black"
-            android:textStyle="bold" />
-
-        <ImageView
-            android:id="@+id/image_search_map"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:src="@drawable/icon_search"
-            app:tint="@color/black" />
+        <fragment
+            android:id="@+id/autocomplete_fragment"
+            android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
     <Button
