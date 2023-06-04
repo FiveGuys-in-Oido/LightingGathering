@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Post {
     private String title;
-    private Categories category;
+    private String category;
     private String date;
     private String location;
     private String createMemberKey;
@@ -14,7 +14,7 @@ public class Post {
     private Integer maxMemberCount;
     private List<String> memberKeys;
 
-    public Post(String title, Categories category, String date, String location, String createMemberKey, Double latitude, Double longitude, String description, Integer maxMemberCount, List<String> memberKeys) {
+    public Post(String title, String category, String date, String location, String createMemberKey, Double latitude, Double longitude, String description, Integer maxMemberCount, List<String> memberKeys) {
         this.title = title;
         this.category = category;
         this.date = date;
@@ -39,7 +39,7 @@ public class Post {
         return title;
     }
 
-    public Categories getCategory() {
+    public String getCategory() {
         return category;
     }
 
