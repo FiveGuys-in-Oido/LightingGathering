@@ -8,8 +8,6 @@ public class MeetPost {
     int leader_id;
     int cate_id;
     int loca_id;
-    String meet_place_name;
-    String meet_place_address;
     Double meet_place_latitude;
     Double meet_place_longitude;
 }
