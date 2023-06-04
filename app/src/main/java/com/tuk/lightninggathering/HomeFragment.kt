@@ -1,5 +1,7 @@
 package com.tuk.lightninggathering
 
+import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.FirebaseApp
+import com.google.firebase.database.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -23,6 +27,7 @@ class HomeFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var postAdapter: PostAdapter
     private lateinit var postList: MutableList<Post>
+    val meetingKeysList = ArrayList<String>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,9 +44,43 @@ class HomeFragment : Fragment() {
         // 게시물 데이터 생성
         postList = ArrayList()
 
+        FirebaseApp.initializeApp(requireContext())
+        val db = FirebaseDatabase.getInstance()
+        val query = db.getReference("meetings")
+        query.addListenerForSingleValueEvent(object : ValueEventListener {
+            @SuppressLint("NotifyDataSetChanged")
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                for (meetingSnapshot in dataSnapshot.children) {
+                    val title = meetingSnapshot.child("title").getValue(String::class.java)
+                    val date = meetingSnapshot.child("date").getValue(String::class.java)
+                    val location = meetingSnapshot.child("location").getValue(String::class.java)
+                    val curMemberCount = meetingSnapshot.child("memberKeys").getValue(object : GenericTypeIndicator<List<String>>() {})
+                    val maxMemberCount = meetingSnapshot.child("maxMemberCount").getValue(Int::class.java)
+                    val meetingKeys = meetingSnapshot.key
+                    if (meetingKeys != null) {
+                        meetingKeysList.add(meetingKeys)
+                    }
+
+                    val post = Post(title, date, location, curMemberCount,maxMemberCount)
+                    postList.add(post)
+                }
+                postAdapter.notifyDataSetChanged() // 어댑터에 데이터 변경을 알림
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Handle the error
+            }
+        })
+
         // 어댑터 설정
-        postAdapter = PostAdapter(postList, requireContext())
+        postAdapter = PostAdapter(postList, requireContext(), meetingKeysList)
         recyclerView.adapter = postAdapter
+
+        postAdapter.setOnItemClickListener { _, meetingKeys ->
+            val intent = Intent(requireContext(), GatheringDetailActivity::class.java)
+            intent.putExtra("meetingKeys", meetingKeys)
+            startActivity(intent)
+        }
 
         return view
     }

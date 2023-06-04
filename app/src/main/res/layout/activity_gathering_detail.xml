@@ -15,7 +15,8 @@
         android:layout_height="50dp"
         android:background="@color/colorPrimary"
         app:layout_scrollFlags="scroll|enterAlways"
-        app:popupTheme="@style/AppTheme.PopupOverlay">
+        app:popupTheme="@style/AppTheme.PopupOverlay"
+        app:navigationIcon="?attr/homeAsUpIndicator">
 
         <TextView
             android:layout_width="wrap_content"

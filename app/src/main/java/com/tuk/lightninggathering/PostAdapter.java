@@ -1,5 +1,6 @@
 package com.tuk.lightninggathering;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -17,11 +18,24 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
     private List<Post> postList;
     private Context context;
+    private OnItemClickListener onItemClickListener;
+    private List<String> meetingKeysList; // meetingKeys 값을 전달받을 변수
 
-    public PostAdapter(List<Post> postList, Context context) {
+    public interface OnItemClickListener {
+        void onItemClick(Post post, String meetingKeys); // meetingKeys 값을 전달받도록 수정
+    }
+
+    public PostAdapter(List<Post> postList, Context context, List<String> meetingKeysList) {
         this.postList = postList;
         this.context = context;
+        this.meetingKeysList = meetingKeysList;
     }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        onItemClickListener = listener;
+    }
+
+
 
     @NonNull
     @Override
@@ -33,14 +47,18 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         return new ViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Post post = postList.get(position);
+        String meetingKeys = meetingKeysList.get(position); // 해당 위치의 meetingKeys 값을 가져옴
 
         holder.titleTextView.setText(post.getTitle());
         holder.dateTextView.setText(post.getDate());
         holder.locationTextView.setText(post.getLocation());
-        //holder.participantsTextView.setText(post.getParticipants());
+        holder.participantsTextView.setText(post.getMemberKeys().size() + "/" + post.getMaxMemberCount());
+
+        holder.bind(post, meetingKeys);
     }
 
     @Override
@@ -61,9 +79,37 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             locationTextView = itemView.findViewById(R.id.locationTextView);
             participantsTextView = itemView.findViewById(R.id.participantsTextView);
         }
+
+        @SuppressLint("SetTextI18n")
+        public void bind(Post post, String meetingKeys) {
+            // 데이터 바인딩
+            titleTextView.setText(post.getTitle());
+            dateTextView.setText(post.getDate());
+            locationTextView.setText(post.getLocation());
+            participantsTextView.setText(post.getMemberKeys().size() + "/" + post.getMaxMemberCount());
+
+            // 클릭 이벤트 처리
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        Post post = postList.get(position);
+                        String meetingKeys = meetingKeysList.get(position); // 해당 위치의 meetingKeys 값을 가져옴
+                        if (onItemClickListener != null) {
+                            onItemClickListener.onItemClick(post, meetingKeys);
+                        }
+                    }
+                }
+            });
+        }
+
+
     }
 
     private int dpToPx(int dp) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, context.getResources().getDisplayMetrics());
     }
+
+
 }
