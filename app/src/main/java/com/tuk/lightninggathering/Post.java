@@ -35,6 +35,10 @@ public class Post {
         this.maxMemberCount = maxMemberCount;
     }
 
+    public Post() {
+
+    }
+
     public String getTitle() {
         return title;
     }
