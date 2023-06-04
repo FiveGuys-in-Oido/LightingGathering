@@ -10,6 +10,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.tasks.Task
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -54,12 +55,41 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
         if (requestCode == RC_SIGN_IN) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            handleSignInResult(task)
             try {
                 val account = task.getResult(ApiException::class.java)
                 firebaseAuthWithGoogle(account!!)
             } catch (e: ApiException) {
                 Log.w("LoginActivity", "Google sign in failed", e)
             }
+        }
+    }
+    /* 사용자 정보 가져오기 */
+    private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
+        try {
+            val acct = completedTask.getResult(ApiException::class.java)
+
+            acct?.let {
+                firebaseAuthWithGoogle(it)
+
+                val personName = it.displayName
+                val personGivenName = it.givenName
+                val personFamilyName = it.familyName
+                val personEmail = it.email
+                val personId = it.id
+                val personPhoto = it.photoUrl
+
+                Log.d("LoginActivity", "handleSignInResult:personName $personName")
+                Log.d("LoginActivity", "handleSignInResult:personGivenName $personGivenName")
+                Log.d("LoginActivity", "handleSignInResult:personEmail $personEmail")
+                Log.d("LoginActivity", "handleSignInResult:personId $personId")
+                Log.d("LoginActivity", "handleSignInResult:personFamilyName $personFamilyName")
+                Log.d("LoginActivity", "handleSignInResult:personPhoto $personPhoto")
+            }
+        } catch (e: ApiException) {
+            // The ApiException status code indicates the detailed failure reason.
+            // Please refer to the GoogleSignInStatusCodes class reference for more information.
+            Log.e("LoginActivity", "signInResult:failed code=${e.statusCode}")
         }
     }
 
@@ -85,6 +115,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
     fun toMainActivity(user: FirebaseUser?) {
         if (user != null) {
+            
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
