@@ -36,8 +36,7 @@ class GatheringDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_gathering_detail)
 
-        val meetingKey = intent.getStringExtra("meetingKey")
-//        val meetingKey = "-NX5hZ_4p0E2oWYV7atq"
+        val meetingKey = intent.getStringExtra("meetingKeys")
 
         FirebaseApp.initializeApp(this)
         val db = FirebaseDatabase.getInstance()
