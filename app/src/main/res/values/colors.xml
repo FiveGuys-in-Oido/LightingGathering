@@ -26,5 +26,7 @@
 
     <!--black filter-->
     <color name="black_color_filter">#80000000</color>
+    <color name="colorWhite">#FDFDFD</color>
+
 
 </resources>
