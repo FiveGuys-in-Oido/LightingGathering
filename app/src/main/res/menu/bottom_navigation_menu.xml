@@ -4,12 +4,10 @@
             android:id="@+id/tab_home"
             android:icon="@drawable/home_gray"
             android:title="home" />
-
         <item
-            android:id = "@+id/tab_like"
-            android:icon="@drawable/heart_gray"
-            android:title = "like"
-            />
+            android:id="@+id/tab_create"
+            android:icon="@drawable/plus"
+            android:title="create" />
         <item
             android:id = "@+id/tab_search"
             android:icon="@drawable/search_gray"
