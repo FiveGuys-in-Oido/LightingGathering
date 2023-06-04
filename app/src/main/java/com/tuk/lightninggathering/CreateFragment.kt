@@ -17,6 +17,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.appcompat.widget.Toolbar
 import com.google.android.gms.maps.model.LatLng
+import com.google.firebase.FirebaseApp
+import com.google.firebase.database.FirebaseDatabase
 import com.travijuu.numberpicker.library.NumberPicker
 import java.text.SimpleDateFormat
 import java.util.*
@@ -39,8 +41,10 @@ class CreateFragment : Fragment() {
     var cList = ArrayList<String>()
     var selectedCategory: Button? = null
     var date: Date? = null
+    var category: String? = null
     var latitude: Double? = null
     var longitude: Double? = null
+    var location: String? = null
 
     // Fragment에 대한 View를 만드는 과정
     override fun onCreateView(
@@ -60,22 +64,11 @@ class CreateFragment : Fragment() {
             val memo = memoEt.text.toString()
 
             // MeetPost 객체 생성 및 정보 설정
-            val meetPost = MeetPost()
-            meetPost.meet_title = title
-            meetPost.meet_date = date.toString()
-            meetPost.meet_people_num = peoplenum
-            meetPost.meet_memo = memo
-            meetPost.meet_place_latitude = latitude
-            meetPost.meet_place_longitude = longitude
-            meetPost.leader_id = 1
-            meetPost.cate_id = 1
-            meetPost.loca_id = 1
-            Log.d("tile", meetPost.meet_title)
-            Log.d("tile", meetPost.meet_date)
-            Log.d("tile", meetPost.meet_people_num.toString())
-            Log.d("tile", meetPost.meet_memo)
-            Log.d("tile", meetPost.meet_place_latitude.toString())
-            Log.d("tile", meetPost.meet_place_longitude.toString())
+            val meetings = Post(title, category, date.toString(),
+                location, "key", latitude, longitude,
+                memo, peoplenum, listOf("key"))
+
+            saveMeetings(meetings)
         }
 
         // 지도 액티비티 시작과 결과 수신
@@ -83,10 +76,13 @@ class CreateFragment : Fragment() {
             if (result.resultCode == Activity.RESULT_OK) {
                 val data: Intent? = result.data
                 val latLng = data?.getParcelableExtra<LatLng>("marker_location")
+                val address = data?.getStringExtra("marker_address")
                 if (latLng != null) {
                     // 위도와 경도 설정
                     latitude = latLng.latitude
                     longitude = latLng.longitude
+                    location = address
+                    selectedLocationTv.text = location
                 }
             }
         }
@@ -99,6 +95,15 @@ class CreateFragment : Fragment() {
 
         return view
     }
+    private fun saveMeetings(meetings: Post) {
+        FirebaseApp.initializeApp(requireContext())
+
+        val db = FirebaseDatabase.getInstance()
+        val meetingsRef = db.getReference("meetings")
+        val newMeetingRef = meetingsRef.push()
+
+        newMeetingRef.setValue(meetings)
+    }
 
     // 카테고리 버튼 클릭 리스너
     private fun onClickCategoryButton(button: Button) {
@@ -106,11 +111,13 @@ class CreateFragment : Fragment() {
             // 같은 버튼 클릭시 선택 해제
             selectedCategory?.setBackgroundResource(R.drawable.btn_corner)
             selectedCategory = null
+            category = null
         } else {
             // 다른 버튼 클릭시 선택 변경
             selectedCategory?.setBackgroundResource(R.drawable.btn_corner)
             button.setBackgroundResource(R.drawable.btn_background)
             selectedCategory = button
+            category = button.text.toString()
         }
     }
 
