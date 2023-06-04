@@ -40,7 +40,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         holder.titleTextView.setText(post.getTitle());
         holder.dateTextView.setText(post.getDate());
         holder.locationTextView.setText(post.getLocation());
-        holder.participantsTextView.setText(post.getParticipants());
+        //holder.participantsTextView.setText(post.getParticipants());
     }
 
     @Override
