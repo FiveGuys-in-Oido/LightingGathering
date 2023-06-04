@@ -36,4 +36,9 @@
     <string name="title_activity_map_actvity">MapActvity</string>
     <string name="title_activity_google_map">GoogleMap</string>
     <string name="title_activity_mypage2">mypage2</string>
+    <string name="id_req">아이디를 입력해주세요</string>
+    <string name="pw_req">패스워드를 입력해주세요</string>
+    <string name="btn_login">로그인</string>
+    <string name="btn_registration">회원가입</string>
+    <string name="firebase_web_client_id">718980654399-lqm9uck6rtq6okqee7oui8rmaj41kpkp.apps.googleusercontent.com</string>
 </resources>
