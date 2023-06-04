@@ -1,6 +1,7 @@
 package com.tuk.lightninggathering
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -26,6 +27,7 @@ class HomeFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var postAdapter: PostAdapter
     private lateinit var postList: MutableList<Post>
+    val meetingKeysList = ArrayList<String>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,6 +56,10 @@ class HomeFragment : Fragment() {
                     val location = meetingSnapshot.child("location").getValue(String::class.java)
                     val curMemberCount = meetingSnapshot.child("memberKeys").getValue(object : GenericTypeIndicator<List<String>>() {})
                     val maxMemberCount = meetingSnapshot.child("maxMemberCount").getValue(Int::class.java)
+                    val meetingKeys = meetingSnapshot.key
+                    if (meetingKeys != null) {
+                        meetingKeysList.add(meetingKeys)
+                    }
 
                     val post = Post(title, date, location, curMemberCount,maxMemberCount)
                     postList.add(post)
@@ -67,8 +73,14 @@ class HomeFragment : Fragment() {
         })
 
         // 어댑터 설정
-        postAdapter = PostAdapter(postList, requireContext())
+        postAdapter = PostAdapter(postList, requireContext(), meetingKeysList)
         recyclerView.adapter = postAdapter
+
+        postAdapter.setOnItemClickListener { _, meetingKeys ->
+            val intent = Intent(requireContext(), GatheringDetailActivity::class.java)
+            intent.putExtra("meetingKeys", meetingKeys)
+            startActivity(intent)
+        }
 
         return view
     }

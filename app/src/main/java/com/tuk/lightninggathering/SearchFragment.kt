@@ -43,7 +43,7 @@ class SearchFragment : Fragment() {
         postList = ArrayList()
 
         // 어댑터 설정
-        postAdapter = PostAdapter(postList, requireContext())
+        //postAdapter = PostAdapter(postList, requireContext())
         recyclerView.adapter = postAdapter
 
         return view
