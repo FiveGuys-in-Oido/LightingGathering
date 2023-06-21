@@ -102,7 +102,6 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
             val geocoder = Geocoder(this, Locale.getDefault()) // Geocoder 인스턴스 초기화
             val addresses: List<Address>? = geocoder.getFromLocation(markerLocation.latitude, markerLocation.longitude, 1)
             val address = addresses?.get(0)?.getAddressLine(0)
-            Log.i("address", "$address")
             val intent = Intent()
             intent.putExtra("marker_location", markerLocation)
             intent.putExtra("marker_address", address)
