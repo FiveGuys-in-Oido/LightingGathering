@@ -22,7 +22,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="40dp"
-            android:src="@drawable/ic_baseline_person_24" />
+            android:src="@drawable/sohee" />
 
         <TextView
             android:id="@+id/tv_mypage_nickname"
@@ -80,21 +80,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="주소 변경"
-            app:layout_constraintBottom_toTopOf="@+id/btn_get_myitem"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edit_update_profile_nickname" />
-
-        <Button
-            android:id="@+id/btn_get_myitem"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="내가 쓴 글 보기"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_change_address" />
 
         <Button
             android:id="@+id/btn_logout"
@@ -103,8 +91,9 @@
             android:layout_marginTop="4dp"
             android:text="로그아웃"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_get_myitem" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_change_address" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

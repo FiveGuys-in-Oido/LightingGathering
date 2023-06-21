@@ -55,12 +55,6 @@ class UserFragment : Fragment() {
             startActivityForResult(intent, REQUEST_CODE_MAP)
         }
 
-        binding.btnGetMyitem.setOnClickListener {
-            val intent = Intent(activity, ItemPost::class.java)
-            intent.putExtra("userId", userId)
-            startActivity(intent)
-        }
-
         // 구글 로그아웃을 위해 로그인 세션 가져오기
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.firebase_web_client_id))
