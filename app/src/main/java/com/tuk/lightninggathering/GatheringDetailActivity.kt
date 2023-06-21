@@ -64,7 +64,6 @@ class GatheringDetailActivity : AppCompatActivity() {
                     val showTitle: TextView = findViewById(R.id.showTitle)
                     val showPeoplenum: TextView = findViewById(R.id.showPeoplenum)
                     showTitle.text = meeting?.title
-                    println(meeting?.memberKeys)
                     showPeoplenum.text = "인원 수: ${meeting?.memberKeys?.size} / ${meeting?.maxMemberCount}"
 
                     // DetailsFragment에 전달할 데이터를 Bundle에 넣습니다.
@@ -99,7 +98,13 @@ class GatheringDetailActivity : AppCompatActivity() {
                 }
 
                 // ViewPager 설정
-                sectionsPagerAdapter.addFragment(MemberFragment())
+                // ViewPager 설정
+                val memberFragment = MemberFragment().apply {
+                    arguments = Bundle().apply {
+                        putStringArrayList("memberKeys", ArrayList(meeting?.memberKeys ?: listOf()))
+                    }
+                }
+                sectionsPagerAdapter.addFragment(memberFragment)
                 val viewPager: ViewPager = findViewById(R.id.container)
                 viewPager.adapter = sectionsPagerAdapter
                 val tabs: TabLayout = findViewById(R.id.tabs)
