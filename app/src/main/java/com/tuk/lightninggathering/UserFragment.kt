@@ -33,10 +33,6 @@ class UserFragment : Fragment() {
 
         binding.tvMypageNickname.text = "userName"
 
-        binding.btnEditNickname.setOnClickListener{
-            binding.editUpdateProfileNickname.isEnabled = true
-        }
-
         binding.btnUpdateProfileNickname.setOnClickListener{
             val nickname = binding.editUpdateProfileNickname.text.toString()
             // 유저 데이터 베이스에 저장.
