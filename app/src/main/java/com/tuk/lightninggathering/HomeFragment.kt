@@ -50,8 +50,9 @@ class HomeFragment : Fragment() {
         query.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 postList.clear() // 기존 게시물 리스트 초기화
+                meetingKeysList.clear()
 
-                for (meetingSnapshot in dataSnapshot.children) {
+                for (meetingSnapshot in dataSnapshot.children.reversed()) {
                     val title = meetingSnapshot.child("title").getValue(String::class.java)
                     val date = meetingSnapshot.child("date").getValue(String::class.java)
                     val location = meetingSnapshot.child("location").getValue(String::class.java)
