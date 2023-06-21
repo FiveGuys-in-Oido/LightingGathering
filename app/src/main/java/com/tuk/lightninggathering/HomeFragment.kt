@@ -36,7 +36,7 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
-        // RecyclerView 초기화
+        // RecyclerView 초기화 및 어댑터 설정
         recyclerView = view.findViewById(R.id.showRecyclerView)
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -47,14 +47,16 @@ class HomeFragment : Fragment() {
         FirebaseApp.initializeApp(requireContext())
         val db = FirebaseDatabase.getInstance()
         val query = db.getReference("meetings")
-        query.addListenerForSingleValueEvent(object : ValueEventListener {
-            @SuppressLint("NotifyDataSetChanged")
+        query.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
+                postList.clear() // 기존 게시물 리스트 초기화
+
                 for (meetingSnapshot in dataSnapshot.children) {
                     val title = meetingSnapshot.child("title").getValue(String::class.java)
                     val date = meetingSnapshot.child("date").getValue(String::class.java)
                     val location = meetingSnapshot.child("location").getValue(String::class.java)
-                    val curMemberCount = meetingSnapshot.child("memberKeys").getValue(object : GenericTypeIndicator<List<String>>() {})
+                    val curMemberCount = meetingSnapshot.child("memberKeys")
+                        .getValue(object : GenericTypeIndicator<List<String>>() {})
                     val maxMemberCount = meetingSnapshot.child("maxMemberCount").getValue(Int::class.java)
                     val meetingKeys = meetingSnapshot.key
                     if (meetingKeys != null) {
