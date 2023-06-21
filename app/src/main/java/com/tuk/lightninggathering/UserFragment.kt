@@ -27,9 +27,9 @@ class UserFragment : Fragment() {
     private lateinit var nameListener: ValueEventListener
 
     // 로그아웃 구현을 위한 변수
-    var auth: FirebaseAuth? = null
+    private var auth: FirebaseAuth? = null
     var googleSignInClient: GoogleSignInClient? = null
-    val userId = auth?.currentUser?.uid
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,6 +37,7 @@ class UserFragment : Fragment() {
     ): View {
         _binding = FragmentUserBinding.inflate(inflater, container, false)
         val view = binding.root
+        val userId = auth?.currentUser?.uid
         // Firebase 실시간 데이터베이스 초기화
         database = FirebaseDatabase.getInstance().reference
 
@@ -136,12 +137,14 @@ class UserFragment : Fragment() {
     }
 
     private fun saveUserNickname(nickname: String) {
+        val userId = auth?.currentUser?.uid
         if (userId != null) {
             database.child("users").child(userId).child("nickname").setValue(nickname)
         }
     }
 
     private fun saveUserAddress(address: String) {
+        val userId = auth?.currentUser?.uid
         if (userId != null) {
             database.child("users").child(userId).child("address").setValue(address)
         }
