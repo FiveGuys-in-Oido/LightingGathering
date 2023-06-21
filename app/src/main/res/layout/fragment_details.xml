@@ -73,7 +73,7 @@
             android:name="com.google.android.gms.maps.MapFragment"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:layout_below="@+id/location"
+            android:layout_below="@+id/showLocation"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
             android:layout_marginTop="15dp" />
