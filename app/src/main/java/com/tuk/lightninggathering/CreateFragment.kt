@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment
 import androidx.appcompat.widget.Toolbar
 import com.google.android.gms.maps.model.LatLng
 import com.google.firebase.FirebaseApp
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.travijuu.numberpicker.library.NumberPicker
 import java.text.SimpleDateFormat
@@ -62,13 +63,20 @@ class CreateFragment : Fragment() {
             val title = titleEt.text.toString()
             val peoplenum = numberPicker.value
             val memo = memoEt.text.toString()
+            val firebaseAuth = FirebaseAuth.getInstance()
+            val user = firebaseAuth.currentUser
+            val userId = user?.uid ?: ""
 
             // MeetPost 객체 생성 및 정보 설정
             val meetings = Post(title, category, date.toString(),
-                location, "key", latitude, longitude,
-                memo, peoplenum, listOf("key"))
+                location, userId, latitude, longitude,
+                memo, peoplenum, listOf(userId))
+            val meetingKeys = saveMeetings(meetings)
 
-            saveMeetings(meetings)
+
+            val intent = Intent(requireContext(), GatheringDetailActivity::class.java)
+            intent.putExtra("meetingKeys", meetingKeys)
+            startActivity(intent)
         }
 
         // 지도 액티비티 시작과 결과 수신
@@ -95,14 +103,13 @@ class CreateFragment : Fragment() {
 
         return view
     }
-    private fun saveMeetings(meetings: Post) {
-        FirebaseApp.initializeApp(requireContext())
-
+    private fun saveMeetings(meetings: Post): String? {
         val db = FirebaseDatabase.getInstance()
         val meetingsRef = db.getReference("meetings")
         val newMeetingRef = meetingsRef.push()
 
         newMeetingRef.setValue(meetings)
+        return newMeetingRef.key
     }
 
     // 카테고리 버튼 클릭 리스너
