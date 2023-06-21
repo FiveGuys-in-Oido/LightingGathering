@@ -34,12 +34,11 @@
 
             <EditText
                 android:id="@+id/editTextTextPersonName"
-                android:layout_width="323dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_marginEnd="3dp"
-                android:layout_marginBottom="0dp"
-                android:layout_toStartOf="@+id/imageView"
+                android:layout_width="334dp"
+                android:layout_height="48dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="12dp"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:minHeight="48dp" />
