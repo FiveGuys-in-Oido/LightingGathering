@@ -15,6 +15,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.database.FirebaseDatabase
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -79,12 +80,17 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 val personId = it.id
                 val personPhoto = it.photoUrl
 
+                //val personUUID = it.idToken //UUID-like Google User ID
+
+
                 Log.d("LoginActivity", "handleSignInResult:personName $personName")
                 Log.d("LoginActivity", "handleSignInResult:personGivenName $personGivenName")
                 Log.d("LoginActivity", "handleSignInResult:personEmail $personEmail")
                 Log.d("LoginActivity", "handleSignInResult:personId $personId")
                 Log.d("LoginActivity", "handleSignInResult:personFamilyName $personFamilyName")
                 Log.d("LoginActivity", "handleSignInResult:personPhoto $personPhoto")
+                //Log.d("LoginActivity", "handleSignInResult:personUUID $personUUID") //logging UUID-like Google User ID
+
             }
         } catch (e: ApiException) {
             // The ApiException status code indicates the detailed failure reason.
@@ -101,7 +107,23 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     Log.w("LoginActivity", "firebaseAuthWithGoogle 성공", task.exception)
-                    toMainActivity(firebaseAuth.currentUser)
+
+                    // Save user info to database
+                    val user = firebaseAuth.currentUser
+                    if (user != null) {
+                        val db = FirebaseDatabase.getInstance()
+
+                        val userMap = hashMapOf(
+                            "id" to user.uid,
+                            "email" to user.email,
+                            "name" to user.displayName
+                        )
+
+                        db.getReference("users").child(user.uid).setValue(userMap)
+
+                        // Navigate to MainActivity after saving user info
+                        toMainActivity(firebaseAuth.currentUser)
+                    }
                 } else {
                     Log.w("LoginActivity", "firebaseAuthWithGoogle 실패", task.exception)
                     Snackbar.make(
