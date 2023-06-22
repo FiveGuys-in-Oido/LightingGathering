@@ -36,9 +36,10 @@
             android:id="@+id/image_mypage_profile"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:layout_marginTop="40dp"
-            android:src="@drawable/ic_baseline_person_24"
+            android:layout_marginTop="56dp"
+            android:src="@drawable/sohee"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -56,9 +57,10 @@
             android:id="@+id/tv_mypage_nickname2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/image_mypage_profile"
+            android:layout_marginTop="8dp"
+            android:text=" 님"
             app:layout_constraintStart_toEndOf="@+id/tv_mypage_nickname"
-            android:text=" 님" />
+            app:layout_constraintTop_toBottomOf="@+id/image_mypage_profile" />
 
         <EditText
             android:id="@+id/edit_update_profile_nickname"
@@ -97,26 +99,17 @@
             app:layout_constraintTop_toBottomOf="@+id/edit_update_profile_nickname" />
 
         <Button
-            android:id="@+id/btn_get_myitem"
-            android:layout_width="413dp"
-            android:layout_height="55dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/btn_background"
-            android:text="내가 쓴 글 보기"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_change_address" />
-
-        <Button
             android:id="@+id/google_sign_out_button"
             android:layout_width="411dp"
             android:layout_height="55dp"
-            android:layout_marginTop="16dp"
             android:background="@drawable/btn_background"
             android:text="로그아웃"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_get_myitem" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_change_address"
+            app:layout_constraintVertical_bias="0.053" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
